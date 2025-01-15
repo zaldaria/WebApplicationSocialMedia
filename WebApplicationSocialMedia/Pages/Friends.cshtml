@@ -1,0 +1,12 @@
+﻿@page
+@model WebApplicationSocialMedia.Pages.FriendsModel
+@{
+}
+
+<h1 class="text-center">Here are your friends!</h1>
+<div>
+	Surname: @Model.user?.surname
+</div>
+<div>
+	Created at: @Model.user?.created.ToString("dd.mm.yyyy")
+</div>
