@@ -10,13 +10,13 @@
     if (User.IsInRole("Admin"))
     {
         <li class="nav-item">
-             <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello admin @UserManager.GetUserName(User)!</a>
+                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/EditProfile" title="Manage">Hello admin @UserManager.GetUserName(User)!</a> @* asp-page="/Account/Manage/Index" *@
         </li>
     }
     else if (User.IsInRole("User"))
     {
             <li class="nav-item">
-                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello user @UserManager.GetUserName(User)!</a>
+                <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/EditProfile" title="Manage">Hello user @UserManager.GetUserName(User)!</a>
             </li>
     }
         
