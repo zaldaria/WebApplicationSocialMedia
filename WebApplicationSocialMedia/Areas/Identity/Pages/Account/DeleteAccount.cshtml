@@ -1,7 +1,18 @@
 ﻿@page
+@inject SignInManager<User> SignInManager
+
 @model WebApplicationSocialMedia.Areas.Identity.Pages.Account.DeleteAccountModel
 @{
 }
 
-<h1>Are you sure you want to delete your account?</h1>
-
+@{
+    if (SignInManager.IsSignedIn(User)){
+        <form method="post">
+            <h1>Are you sure you want to delete your account?</h1>
+            <div>
+                <button type="submit" class="btn btn-primary" style="background-color: #1272d6; color: white;">Delete</button>
+            </div>
+        </form>
+    }
+    
+}
