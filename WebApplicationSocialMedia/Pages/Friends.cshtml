@@ -3,10 +3,43 @@
 @{
 }
 
-<h1 class="text-center">Here are your friends!</h1>
-<div>
+<h1 class="text-center">All your friends are here!</h1>
+
+<table class="table">
+	<tbody>
+		@{
+			for (int i =0; i < Model.friends?.Count; i++){
+				<tr>
+					<td>
+						@(i+1)
+					</td>
+					<td>
+						@{
+							if (Model.friends[i].image != ""){
+								<img src="data:image;base64,@Model.friends[i].image" width="100px" height="100px" />
+							}
+							else {
+								<img src="~/images/photo.png" width="110px" height="100px" />
+							}
+						}
+					</td>
+					<td>
+						@Model.friends[i].surname
+					</td>
+					<td>
+						@Model.friends[i].name
+					</td>
+				</tr>
+			}
+		}
+	</tbody>
+</table>
+
+<h3>Total friends: @Model.friends?.Count()</h3>
+
+@* <div>
 	Surname: @Model.user?.surname
 </div>
 <div>
 	Created at: @Model.user?.created.ToString("dd.mm.yyyy")
-</div>
+</div> *@
