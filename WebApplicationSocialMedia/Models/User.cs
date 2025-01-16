@@ -8,16 +8,16 @@ namespace WebApplicationSocialMedia.Models
     {
         public string surname { get; set; } = "";
         public string name { get; set; } = "";
-        public string patronymic { get; set; } = "";
+        public string? patronymic { get; set; } = "";
         public DateTime birth { get; set; } = DateTime.MinValue;
-        public string residence { get; set; } = "";
-        public string phone { get; set; } = "";
-        public string status { get; set; } = "";
+        public string? residence { get; set; } = "";
+        public string? phone { get; set; } = "";
+        public string? status { get; set; } = "";
         public DateTime created { get; set; }
-        public string image { get; set; } = "";
+        public string? image { get; set; }
 
         [NotMapped]
-        public IFormFile ImageFile { get; set; }
+        public IFormFile? ImageFile { get; set; }
 
         public ICollection<Organization>? organizations { get; set; }
         public ICollection<Post>? posts { get; set; }

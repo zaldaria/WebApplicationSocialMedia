@@ -16,7 +16,7 @@
 					</td>
 					<td>
 						@{
-							if (Model.users[i].image != "")
+							if (Model.users[i].image != null)
 							{
 								<img src="data:image;base64,@Model.users[i].image" width="75px" height="75px" />
 							}

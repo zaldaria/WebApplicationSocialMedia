@@ -10,8 +10,7 @@ namespace WebApplicationSocialMedia.Pages
 {
     public class OurUsersModel : PageModel
     {
-        private readonly UserManager<User> _userManager;
-        
+        private readonly UserManager<User> _userManager;        
         public OurUsersModel(UserManager<User> userManager)
         {
             this._userManager = userManager;

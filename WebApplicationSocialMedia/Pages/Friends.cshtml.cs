@@ -18,7 +18,7 @@ namespace WebApplicationSocialMedia.Pages
         public FriendsModel(ApplicationDbContext _context, UserManager<User> userManager)
         {
             _friendshipDbStorage = new FriendshipDBStorage(_context);
-            this._userManager = userManager;
+            _userManager = userManager;
         }
 
         public List<Friendship>? friendships { get; set; }

@@ -15,7 +15,7 @@
 					</td>
 					<td>
 						@{
-							if (Model.friends[i].image != ""){
+							if (Model.friends[i].image != null){
 								<img src="data:image;base64,@Model.friends[i].image" width="75px" height="75px" />
 							}
 							else {
@@ -36,6 +36,17 @@
 </table>
 
 <h3>Total friends: @Model.friends?.Count()</h3>
+
+<style>
+	.table {
+		width: 50%;
+	}
+	h3 {
+		color: #000000;		
+		margin-bottom: 100px;
+	}
+</style>
+
 
 @* <div>
 	Surname: @Model.user?.surname

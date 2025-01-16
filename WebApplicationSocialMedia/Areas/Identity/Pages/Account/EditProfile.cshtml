@@ -1,6 +1,115 @@
 ﻿@page
-@model EditProfileModel
+@model WebApplicationSocialMedia.Areas.Identity.Pages.Account.EditProfileModel
 @{
 }
 
 <h1>Edit your profile..</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Surname</label>
+                <div>
+                    <input class="form-control" asp-for="editUser.surname" />                    
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Name</label>
+                <div>
+                    <input class="form-control" asp-for="editUser.name" />                    
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Patronymic</label>
+                <div>
+                    <input class="form-control" asp-for="editUser.patronymic" />                    
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Date of birth</label>
+                <div>
+                    <input type="date" class="form-control" asp-for="editUser.birth.Date" />
+                    <span asp-validation-for="editUser.birth.Date" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Residence</label>
+                <div>
+                    <input class="form-control" asp-for="editUser.residence" />                    
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Status</label>
+                <div>
+                    <input class="form-control" asp-for="editUser.status" />                    
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Image</label>
+                <div>
+                    <input type="file" asp-for="editUser.ImageFile" class="form-control" lang="en" />
+                    <span asp-validation-for="editUser.ImageFile" class="text-danger"></span>
+                </div>      
+            </div>
+            
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Phone</label>
+                <div>
+                    <input class="form-control" asp-for="editUser.phone" />                    
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Email</label>
+                <div>
+                    <input class="form-control" asp-for="editUser.Email" />
+                    <span asp-validation-for="editUser.Email" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Old Password</label>
+                <div>
+                    <input class="form-control" asp-for="OldPassword" type="password" />
+                    <span asp-validation-for="OldPassword" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">New Password</label>
+                <div>
+                    <input class="form-control" asp-for="NewPassword" type="password" />
+                    <span asp-validation-for="NewPassword" class="text-danger"></span>
+                </div>
+            </div>
+            
+           
+            <div class="row mb-3">
+                <div class="offset-sm-4 col-sm-4 d-grid">
+                    <button id="saveSubmit" type="submit" class="w-100 btn btn-lg btn-primary" style="background-color: #1272d6; color: white;">Save</button>
+                </div>
+                
+            </div>
+        </form>
+        
+    </div>
+</div>
+
+<div class="mb-4 mt-4">
+    <div class="d-flex justify-content-start">
+        <a asp-page="./Profile" class="me-5">Back to Profile</a>
+        <a asp-page="./DeleteAccount">Delete Account</a>
+    </div>
+</div>
+

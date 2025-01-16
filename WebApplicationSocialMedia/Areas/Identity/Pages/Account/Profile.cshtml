@@ -1,0 +1,122 @@
+﻿@page
+@model WebApplicationSocialMedia.Areas.Identity.Pages.Account.ProfileModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your profile</title>
+    <style>
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .profile-header {
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+            .profile-header img {
+                border-radius: 50%;
+                margin-right: 20px;
+            }
+
+            .profile-header h1 {
+                margin: 0;
+            }
+
+            .profile-header p {
+                font-size: 20px;
+            }
+
+        .bio {
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .bio h2 {
+                margin-top: 0;
+            }
+
+            .bio p {
+                font-size: 16px;
+            }
+        /* .posts {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 20px;
+                }
+                .post {
+                    background: #ffffff;
+                    border-radius: 8px;
+                    padding: 15px;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                    width: calc(33% - 20px);
+                } */
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="profile-header">
+            @{
+                if (Model.currentUser.image != null)
+                {
+                    <img src="data:image;base64,@Model.currentUser.image" width="150px" height="150px" />
+                }
+                else
+                {
+                    <img src="~/images/photo.png" width="170px" height="150px" />
+                }
+            }
+            <div>
+                <h1>@Model.currentUser.surname @Model.currentUser.name @Model.currentUser.patronymic</h1>
+                <p>@(Model.currentUser.residence != null ? Model.currentUser.residence : "Your residence..")</p>
+                <p>Birth date: @(Model.currentUser.birth != DateTime.MinValue ? Model.currentUser.birth.ToString("dd.MM.yyyy") : "Your birth date..") </p>
+                <p>Friends: @Model.CntFriends</p>
+            </div>
+        </div>
+
+        <div class="bio">
+            <h2>Status</h2>
+            <p>@(Model.currentUser.status != null ? @Model.currentUser.status : "Write something..") </p>
+        </div>
+
+        <div>
+            <form method="post">
+                <input type="submit" value="Edit profile" class="btn btn-primary" style="background-color: #1272d6; color: white;" />
+            </form>
+        </div>
+
+        @* <div class="posts">
+            <div class="post">
+                <h3>Заголовок поста 1</h3>
+                <p>Содержимое поста 1. Здесь можно описать, о чем этот пост.</p>
+            </div>
+            <div class="post">
+                <h3>Заголовок поста 2</h3>
+                <p>Содержимое поста 2. Здесь можно описать, о чем этот пост.</p>
+            </div>
+            <div class="post">
+                <h3>Заголовок поста 3</h3>
+                <p>Содержимое поста 3. Здесь можно описать, о чем этот пост.</p>
+            </div>
+
+        </div> *@
+    </div>
+
+</body>
+</html>
