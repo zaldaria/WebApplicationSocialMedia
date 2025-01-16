@@ -12,13 +12,13 @@ namespace WebApplicationSocialMedia.Pages
     [Authorize]
     public class FriendsModel : PageModel
     {
-        private readonly UserManager<User> userManager;
+        private readonly UserManager<User> _userManager;
         private readonly FriendshipDBStorage _friendshipDbStorage;
 
         public FriendsModel(ApplicationDbContext _context, UserManager<User> userManager)
         {
             _friendshipDbStorage = new FriendshipDBStorage(_context);
-            this.userManager = userManager;
+            this._userManager = userManager;
         }
 
         public List<Friendship>? friendships { get; set; }
@@ -27,7 +27,7 @@ namespace WebApplicationSocialMedia.Pages
 
         public void OnGet() 
         {
-            var u = userManager.GetUserAsync(User);
+            var u = _userManager.GetUserAsync(User);
             u.Wait();
             user = u.Result;
 
@@ -39,8 +39,7 @@ namespace WebApplicationSocialMedia.Pages
             fshp.Wait();
             friendships = fshp.Result;
 
-        }
-        
+        }        
 
         //public User? user;
         //public FriendsModel(UserManager<User> userManager)
