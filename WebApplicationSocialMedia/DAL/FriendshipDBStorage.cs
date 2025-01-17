@@ -55,5 +55,14 @@ namespace WebApplicationSocialMedia.DAL
             _context.friendship.Remove(frshp);
             _context.SaveChanges();
         }
+        public async Task RemoveAllFriendshipsOfUser(User user)
+        {
+            var friendships = await GetAllFriendshipsOfUser(user);
+            foreach (var friendship in friendships)
+            {
+                RemoveFriendship(friendship);
+            }
+        }
+        
     }
 }

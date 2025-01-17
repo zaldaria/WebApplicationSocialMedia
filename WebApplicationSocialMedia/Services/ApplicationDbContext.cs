@@ -50,7 +50,7 @@ namespace WebApplicationSocialMedia.Services
                 .HasOne(f => f.friend)
                 .WithMany(u => u.imFriend)
                 .HasForeignKey(f => f.friendID)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Message>()
                 .HasOne(m => m.sender)
@@ -68,11 +68,23 @@ namespace WebApplicationSocialMedia.Services
                 .HasOne(c => c.author)
                 .WithMany(u => u.comments)
                 .HasForeignKey(c => c.userID)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Like>()
                 .HasOne(c => c.author)
                 .WithMany(l => l.likes)
+                .HasForeignKey(c => c.userID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Comment>()
+                .HasOne(c => c.post) 
+                .WithMany(p => p.comments) 
+                .HasForeignKey(c => c.postID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Comment>()
+                .HasOne(c => c.author)
+                .WithMany(u => u.comments)
                 .HasForeignKey(c => c.userID)
                 .OnDelete(DeleteBehavior.Restrict);
 

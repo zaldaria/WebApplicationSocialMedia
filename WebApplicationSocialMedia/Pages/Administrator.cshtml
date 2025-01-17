@@ -1,6 +1,74 @@
 ﻿@page
+@using Microsoft.AspNetCore.Identity
+@using WebApplicationSocialMedia.Models
+@inject SignInManager<User> SignInManager
 @model WebApplicationSocialMedia.Pages.AdministratorModel
 @{
 }
 
 <h1 class="text-center">Welcome Admin!</h1>
+
+<table class="table">
+	<tbody>
+		@{
+			for (int i = 0; i < Model.users.Count; i++)
+			{
+				if (Model.users[i].Id != Model.currentUser?.Id)
+				{
+					<tr>
+						<td>
+							@(i + 1)
+						</td>
+						<td>
+							@{
+								if (Model.users[i].image != null)
+								{
+									<img src="data:image;base64,@Model.users[i].image" width="75px" height="75px" />
+								}
+								else
+								{
+									<img src="~/images/default_avatar.png" width="75px" height="75px" />
+								}
+							}
+						</td>
+						<td>
+							@Model.users[i].surname
+						</td>
+						<td>
+							@Model.users[i].name
+						</td>
+						<td>
+							<form method="post" asp-page-handler="Delete">
+								<input type="hidden" name="userId" value="@Model.users[i].Id" />
+								<button type="submit" class="btn btn-danger">Delete</button>
+							</form>
+						</td>
+					</tr>
+				}
+				
+			}
+		}
+	</tbody>
+</table>
+
+<h3>Total: @Model.users.Count() </h3>
+
+<style>
+	body {
+		background-color: #ffffff;
+	}
+
+	.table {
+		width: 60%;
+	}
+
+	h1 {
+		color: #1272d6;
+	}
+
+	h3 {
+		color: #000000;
+		margin-bottom: 100px;
+	}
+
+</style>

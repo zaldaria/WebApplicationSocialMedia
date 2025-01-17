@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -7,6 +8,7 @@ using WebApplicationSocialMedia.Services;
 
 namespace WebApplicationSocialMedia.Areas.Identity.Pages.Account
 {
+    [Authorize]
     public class ProfileModel : PageModel
     {
         private readonly FriendshipDBStorage _friendshipDbStorage;

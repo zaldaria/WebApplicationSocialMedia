@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,6 +10,7 @@ using WebApplicationSocialMedia.Services;
 
 namespace WebApplicationSocialMedia.Areas.Identity.Pages.Account
 {
+    [Authorize(Roles = "User")]
     public class EditProfileModel : PageModel
     {
         private readonly UserManager<User> _userManager;
@@ -46,6 +48,7 @@ namespace WebApplicationSocialMedia.Areas.Identity.Pages.Account
 
             existingUser.surname = !string.IsNullOrEmpty(editUser.surname) ? editUser.surname : existingUser.surname;
             existingUser.name = !string.IsNullOrEmpty(editUser.name) ? editUser.name : existingUser.name;
+            existingUser.patronymic = !string.IsNullOrEmpty(editUser.patronymic) ? editUser.patronymic : existingUser.patronymic;
             existingUser.phone = !string.IsNullOrEmpty(editUser.phone) ? editUser.phone : existingUser.phone;
             existingUser.Email = !string.IsNullOrEmpty(editUser.Email) ? editUser.Email : existingUser.Email;
             existingUser.UserName = !string.IsNullOrEmpty(editUser.Email) ? editUser.Email : existingUser.Email;
