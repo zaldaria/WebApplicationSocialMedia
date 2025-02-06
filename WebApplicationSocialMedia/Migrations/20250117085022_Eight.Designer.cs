@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplicationSocialMedia.Services;
 
@@ -11,9 +12,11 @@ using WebApplicationSocialMedia.Services;
 namespace WebApplicationSocialMedia.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250117085022_Eight")]
+    partial class Eight
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace WebApplicationSocialMedia.Migrations
 
                     b.HasIndex("membersId");
 
-                    b.ToTable("CommunityUser", (string)null);
+                    b.ToTable("CommunityUser");
                 });
 
             modelBuilder.Entity("InterestUser", b =>
@@ -49,7 +52,7 @@ namespace WebApplicationSocialMedia.Migrations
 
                     b.HasIndex("usersId");
 
-                    b.ToTable("InterestUser", (string)null);
+                    b.ToTable("InterestUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -215,7 +218,7 @@ namespace WebApplicationSocialMedia.Migrations
 
                     b.HasIndex("organizationsorganizationID");
 
-                    b.ToTable("OrganizationUser", (string)null);
+                    b.ToTable("OrganizationUser");
                 });
 
             modelBuilder.Entity("WebApplicationSocialMedia.Models.Message", b =>
@@ -243,7 +246,7 @@ namespace WebApplicationSocialMedia.Migrations
 
                     b.HasIndex("senderID");
 
-                    b.ToTable("Messages", (string)null);
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("WebApplicationSocialMedia.Models.User", b =>
@@ -365,7 +368,7 @@ namespace WebApplicationSocialMedia.Migrations
 
                     b.HasIndex("userID");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("WebSocialMedia.Models.Community", b =>
@@ -391,7 +394,7 @@ namespace WebApplicationSocialMedia.Migrations
 
                     b.HasIndex("userID");
 
-                    b.ToTable("Communities", (string)null);
+                    b.ToTable("Communities");
                 });
 
             modelBuilder.Entity("WebSocialMedia.Models.CommunityPost", b =>
@@ -413,7 +416,7 @@ namespace WebApplicationSocialMedia.Migrations
 
                     b.HasIndex("communityID");
 
-                    b.ToTable("CommunityPosts", (string)null);
+                    b.ToTable("CommunityPosts");
                 });
 
             modelBuilder.Entity("WebSocialMedia.Models.Friendship", b =>
@@ -438,7 +441,7 @@ namespace WebApplicationSocialMedia.Migrations
 
                     b.HasIndex("userID");
 
-                    b.ToTable("friendship", (string)null);
+                    b.ToTable("friendship");
                 });
 
             modelBuilder.Entity("WebSocialMedia.Models.Interest", b =>
@@ -452,7 +455,7 @@ namespace WebApplicationSocialMedia.Migrations
 
                     b.HasKey("interestID");
 
-                    b.ToTable("Interests", (string)null);
+                    b.ToTable("Interests");
                 });
 
             modelBuilder.Entity("WebSocialMedia.Models.Like", b =>
@@ -477,7 +480,7 @@ namespace WebApplicationSocialMedia.Migrations
 
                     b.HasIndex("userID");
 
-                    b.ToTable("Likes", (string)null);
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("WebSocialMedia.Models.Organization", b =>
@@ -491,7 +494,7 @@ namespace WebApplicationSocialMedia.Migrations
 
                     b.HasKey("organizationID");
 
-                    b.ToTable("Organizations", (string)null);
+                    b.ToTable("Organizations");
                 });
 
             modelBuilder.Entity("WebSocialMedia.Models.Post", b =>
@@ -513,7 +516,7 @@ namespace WebApplicationSocialMedia.Migrations
 
                     b.HasIndex("authorID");
 
-                    b.ToTable("Posts", (string)null);
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("CommunityUser", b =>

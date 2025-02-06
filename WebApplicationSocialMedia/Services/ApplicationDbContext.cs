@@ -1,14 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.Options;
-using System.Reflection.Emit;
 using WebApplicationSocialMedia.Models;
 using WebSocialMedia.Models;
-using System.Linq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+
 
 namespace WebApplicationSocialMedia.Services
 {
@@ -102,14 +97,8 @@ namespace WebApplicationSocialMedia.Services
                 NormalizedName = "USER" 
             };
 
-
             builder.Entity<IdentityRole>().HasData(admin, user);
-
-            //modelBuilder.Entity<IdentityUserLogin<string>>(entity =>
-            //{
-            //    entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
-            //});
-
+           
         }
 
     }

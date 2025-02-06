@@ -1,6 +1,49 @@
 ﻿@page
 @model WebApplicationSocialMedia.Pages.MessagesModel
 @{
+    ViewData["Title"] = "Messages";
 }
 
-<h1>Here are @Model.user?.name's messages..</h1>
+<h1>Your Messages</h1>
+
+<div style="display: flex;">
+    <div style="width: 200px; border-right: 1px solid #ccc; padding-right: 10px;">
+        <h3>Users</h3>
+        <ul>
+            @foreach (var user in Model.Users)
+            {
+                <li>
+                    <a asp-page-handler="OnGet" asp-route-userId="@user.Id">@user.name @user.surname</a>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div style="flex-grow: 1; padding-left: 10px;">
+        @if (Model.UserMessages.Any())
+        {
+            <h3>Messages with @Model.SelectedUser.name</h3>
+            <div>
+                @foreach (var message in Model.UserMessages)
+                {
+                    
+                    <div>
+                        <strong>@(message.senderID == Model.CurrentUser.Id ? "You" : Model.SelectedUser.name) :</strong>
+                        <p>@message.text</p>
+                        <small>@message.sent</small>
+                    </div>
+                }
+            </div>
+
+            <form method="post">
+                <input type="hidden" name="recipientId" value="@Model.SelectedUserId" />
+                <textarea name="text" rows="3" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        }
+        else
+        {
+            <p>Select a user to view messages.</p>
+        }
+    </div>
+</div>
