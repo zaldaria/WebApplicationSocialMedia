@@ -1,4 +1,4 @@
-﻿@page
+@page
 @using Microsoft.AspNetCore.Identity
 @using WebApplicationSocialMedia.Models
 @inject SignInManager<User> SignInManager
@@ -11,18 +11,20 @@
     <div class="container">
         @if (!SignInManager.IsSignedIn(User))
         {
-            <h1>Become a part of SocialMedia Network!</h1>
+            <h1>Become a part of Social Network!</h1>
         }
         else
         {
-            <h1>Welcome to SocialMedia Network!</h1>
+            <h1>Welcome to Social Network!</h1>
         }
         <p>
             Connect with friends, share your thoughts, and explore new interests.
             <br/>
             Join us and be part of a community!
         </p>
-
+        <div class="image-container">
+            <img src="~/images/start2.png" />
+        </div>
     </div>
 </body>
 <style>
@@ -33,22 +35,14 @@
     p {
         width: 75%;
         font-size: 2.0em;
-        margin-bottom: 300px;
+    }
+    
+    .image-container img {    
+        height: 300px;
+        display: block;
+        margin: 0 auto;
     }
 </style>
 
 
 
-@* @page
-@model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
-<a href="/Friends">User's friends</a>
-<a href="/Administrator">Administrate</a> *@

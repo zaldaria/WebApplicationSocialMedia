@@ -40,17 +40,6 @@ namespace WebApplicationSocialMedia.Pages
 
         }        
 
-        //public User? user;
-        //public FriendsModel(UserManager<User> userManager)
-        //{
-        //    this.userManager = userManager;
-        //}
-
-        //public void OnGet()
-        //{
-        //    var task = userManager.GetUserAsync(User);
-        //    task.Wait();
-        //    user = task.Result;
-        //}
+        
     }
 }

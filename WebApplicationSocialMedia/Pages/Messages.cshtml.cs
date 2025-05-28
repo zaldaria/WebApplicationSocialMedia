@@ -3,13 +3,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using WebApplicationSocialMedia.Models;
+using NuGet.Protocol.Plugins;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplicationSocialMedia.DAL;
+using WebApplicationSocialMedia.Models;
 using WebApplicationSocialMedia.Services;
-using NuGet.Protocol.Plugins;
 using Message = WebApplicationSocialMedia.Models.Message;
+
 
 namespace WebApplicationSocialMedia.Pages
 {
@@ -18,18 +20,21 @@ namespace WebApplicationSocialMedia.Pages
     {
         private readonly UserManager<User> _userManager;
         private readonly ApplicationDbContext _context;
+        private readonly MessageDbStorage _messageDbStorage;
+        private readonly FriendshipDBStorage _friendshipDbStorage;
 
         public User CurrentUser { get; set; }
-        public List<User> Users { get; set; } = new List<User>();
+        public List<User?> Users { get; set; } = new List<User?>();
         public List<Message> UserMessages { get; set; } = new List<Message>();
         public string SelectedUserId { get; set; } = string.Empty;
         public User? SelectedUser { get; set; }
         
-        public MessagesModel(UserManager<User> userManager, ApplicationDbContext context)
+        public MessagesModel(ApplicationDbContext context, UserManager<User> userManager)
         {
             _userManager = userManager;
             _context = context;
-            
+            _messageDbStorage = new MessageDbStorage(_context);
+            _friendshipDbStorage = new FriendshipDBStorage(_context);
         }
 
         public async Task<IActionResult> OnGet(string? userId)
@@ -38,8 +43,11 @@ namespace WebApplicationSocialMedia.Pages
             
             if (CurrentUser != null)
             {
-                Users = await _context.Users
-                    .Where(u => u.Id != CurrentUser.Id)
+               
+                Users = await _context.friendship
+                    .Where(f => (f.userID == CurrentUser.Id || f.friendID == CurrentUser.Id))
+                    .Select(f => f.userID == CurrentUser.Id ? f.friend : f.user)
+                    .Distinct()
                     .ToListAsync();
 
                 if (!string.IsNullOrEmpty(userId))
@@ -70,14 +78,13 @@ namespace WebApplicationSocialMedia.Pages
             Message message = new Message();
             message.messageID = Guid.NewGuid().ToString();
             
-            message.senderID = CurrentUser?.Id;
+            message.senderID = CurrentUser.Id;
             message.recipientID = recipientId;
             message.text = text;
             message.sent = DateTime.Now;
 
             Console.WriteLine(message.senderID + " " + message.recipientID);
-            _context.Messages.Add(message);
-            await _context.SaveChangesAsync();
+            _messageDbStorage.AddMessage(message);
 
             return RedirectToPage("");
         }

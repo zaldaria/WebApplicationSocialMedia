@@ -1,21 +1,17 @@
-﻿@page
+@page
 @model WebApplicationSocialMedia.Pages.FriendsModel
-@{
-}
 
 <h1 class="text-center">All your friends are here!</h1>
 
 <table class="table">
 	<tbody>
-		@{
-			for (int i =0; i < Model.friends?.Count; i++){
+		@{for (int i =0; i < Model.friends?.Count; i++){
 				<tr>
 					<td>
 						@(i+1)
 					</td>
 					<td>
-						@{
-							if (Model.friends[i].image != null){
+						@{if (Model.friends[i].image != null){
 								<img src="data:image;base64,@Model.friends[i].image" width="75px" height="75px" />
 							}
 							else {
@@ -48,9 +44,3 @@
 </style>
 
 
-@* <div>
-	Surname: @Model.user?.surname
-</div>
-<div>
-	Created at: @Model.user?.created.ToString("dd.mm.yyyy")
-</div> *@

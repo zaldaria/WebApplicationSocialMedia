@@ -56,12 +56,6 @@ namespace WebApplicationSocialMedia.DAL
                 .ToListAsync();
         }
 
-        //public async Task UpdateMessage(Message message)
-        //{
-        //    _context.Messages.Update(message);
-        //    await _context.SaveChangesAsync();
-        //}
-
         public async Task DeleteMessage(string messageId)
         {
             var message = await GetMessageById(messageId);
