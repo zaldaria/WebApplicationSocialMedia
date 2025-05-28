@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WebApplicationSocialMedia.Models;
-using WebSocialMedia.Models;
 
 
 namespace WebApplicationSocialMedia.Services
@@ -10,8 +9,9 @@ namespace WebApplicationSocialMedia.Services
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext(DbContextOptions options) : base(options) 
-        { 
-
+        {
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
 
         public new DbSet<User> Users { get; set; } = null!;

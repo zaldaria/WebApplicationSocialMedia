@@ -54,7 +54,7 @@ namespace WebApplicationSocialMedia.Areas.Identity.Pages.Account
             existingUser.UserName = !string.IsNullOrEmpty(editUser.Email) ? editUser.Email : existingUser.Email;
             existingUser.residence = !string.IsNullOrEmpty(editUser.residence) ? editUser.residence : existingUser.residence;
             existingUser.status = !string.IsNullOrEmpty(editUser.status) ? editUser.status : existingUser.status;
-            existingUser.birth = editUser.birth != DateTime.MinValue ? editUser.birth : existingUser.birth;
+            existingUser.birth = editUser.birth != DateOnly.MaxValue ? editUser.birth : existingUser.birth;
 
             if (editUser.ImageFile != null)
             {

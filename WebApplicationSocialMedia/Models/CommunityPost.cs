@@ -1,4 +1,4 @@
-﻿namespace WebSocialMedia.Models
+namespace WebApplicationSocialMedia.Models
 {
     public class CommunityPost
     {

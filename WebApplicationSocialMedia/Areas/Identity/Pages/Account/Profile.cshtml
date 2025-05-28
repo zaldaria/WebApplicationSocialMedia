@@ -1,4 +1,4 @@
-п»ї@page
+@page
 @model WebApplicationSocialMedia.Areas.Identity.Pages.Account.ProfileModel
 @{
 }
@@ -28,7 +28,7 @@
             <div>
                 <h1>@Model.currentUser.surname @Model.currentUser.name @Model.currentUser.patronymic</h1>
                 <p>@(Model.currentUser.residence != null ? Model.currentUser.residence : "Your residence..")</p>
-                <p>Birth date: @(Model.currentUser.birth != DateTime.MinValue ? Model.currentUser.birth.ToString("dd.MM.yyyy") : "Your birth date..") </p>
+                <p>Birth date: @(Model.currentUser.birth != DateOnly.MaxValue ? Model.currentUser.birth.ToString("dd.MM.yyyy") : "Your birth date..") </p>
                 <p>Friends: @Model.CntFriends</p>
             </div>
         </div>
@@ -46,16 +46,16 @@
 
         @* <div class="posts">
             <div class="post">
-                <h3>Р—Р°РіРѕР»РѕРІРѕРє РїРѕСЃС‚Р° 1</h3>
-                <p>РЎРѕРґРµСЂР¶РёРјРѕРµ РїРѕСЃС‚Р° 1. Р—РґРµСЃСЊ РјРѕР¶РЅРѕ РѕРїРёСЃР°С‚СЊ, Рѕ С‡РµРј СЌС‚РѕС‚ РїРѕСЃС‚.</p>
+                <h3>Заголовок поста 1</h3>
+                <p>Содержимое поста 1. Здесь можно описать, о чем этот пост.</p>
             </div>
             <div class="post">
-                <h3>Р—Р°РіРѕР»РѕРІРѕРє РїРѕСЃС‚Р° 2</h3>
-                <p>РЎРѕРґРµСЂР¶РёРјРѕРµ РїРѕСЃС‚Р° 2. Р—РґРµСЃСЊ РјРѕР¶РЅРѕ РѕРїРёСЃР°С‚СЊ, Рѕ С‡РµРј СЌС‚РѕС‚ РїРѕСЃС‚.</p>
+                <h3>Заголовок поста 2</h3>
+                <p>Содержимое поста 2. Здесь можно описать, о чем этот пост.</p>
             </div>
             <div class="post">
-                <h3>Р—Р°РіРѕР»РѕРІРѕРє РїРѕСЃС‚Р° 3</h3>
-                <p>РЎРѕРґРµСЂР¶РёРјРѕРµ РїРѕСЃС‚Р° 3. Р—РґРµСЃСЊ РјРѕР¶РЅРѕ РѕРїРёСЃР°С‚СЊ, Рѕ С‡РµРј СЌС‚РѕС‚ РїРѕСЃС‚.</p>
+                <h3>Заголовок поста 3</h3>
+                <p>Содержимое поста 3. Здесь можно описать, о чем этот пост.</p>
             </div>
 
         </div> *@

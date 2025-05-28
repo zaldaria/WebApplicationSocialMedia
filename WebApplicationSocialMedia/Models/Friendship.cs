@@ -1,13 +1,13 @@
-п»їusing WebApplicationSocialMedia.Models;
+using WebApplicationSocialMedia.Models;
 
-namespace WebSocialMedia.Models
+namespace WebApplicationSocialMedia.Models
 {
     public class Friendship
     {
         public string friendshipID { get; set; }
-        public string userID { get; set; } // cР°Рј РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ
+        public string userID { get; set; } // cам пользователь
         public User? user { get; set; }
-        public string friendID {  get; set; } // РґСЂСѓРі
+        public string friendID {  get; set; } // друг
         public User? friend { get; set; }
         public DateTime? created { get; set; }
         public Friendship() {

@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Hosting;
 using WebApplicationSocialMedia.Models;
 
-namespace WebSocialMedia.Models
+namespace WebApplicationSocialMedia.Models
 {
     public class Comment
     {

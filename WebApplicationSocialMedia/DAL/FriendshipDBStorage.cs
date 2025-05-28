@@ -1,10 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using WebApplicationSocialMedia.Models;
 using WebApplicationSocialMedia.Services;
-using WebSocialMedia.Models;
-using System.Linq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace WebApplicationSocialMedia.DAL
 {

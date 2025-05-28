@@ -12,8 +12,8 @@ using WebApplicationSocialMedia.Services;
 namespace WebApplicationSocialMedia.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250117001118_Seven")]
-    partial class Seven
+    [Migration("20250528111043_First")]
+    partial class First
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -221,6 +221,210 @@ namespace WebApplicationSocialMedia.Migrations
                     b.ToTable("OrganizationUser");
                 });
 
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Comment", b =>
+                {
+                    b.Property<string>("commentID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("postID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("commentID");
+
+                    b.HasIndex("postID");
+
+                    b.HasIndex("userID");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Community", b =>
+                {
+                    b.Property<string>("communityID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("communityID");
+
+                    b.HasIndex("userID");
+
+                    b.ToTable("Communities");
+                });
+
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.CommunityPost", b =>
+                {
+                    b.Property<string>("communityPostID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("communityID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("communityPostID");
+
+                    b.HasIndex("communityID");
+
+                    b.ToTable("CommunityPosts");
+                });
+
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Friendship", b =>
+                {
+                    b.Property<string>("friendshipID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("friendID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("userID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("friendshipID");
+
+                    b.HasIndex("friendID");
+
+                    b.HasIndex("userID");
+
+                    b.ToTable("friendship");
+                });
+
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Interest", b =>
+                {
+                    b.Property<string>("interestID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("intName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("interestID");
+
+                    b.ToTable("Interests");
+                });
+
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Like", b =>
+                {
+                    b.Property<string>("likeID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("postID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("userID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("likeID");
+
+                    b.HasIndex("postID");
+
+                    b.HasIndex("userID");
+
+                    b.ToTable("Likes");
+                });
+
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Message", b =>
+                {
+                    b.Property<string>("messageID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("recipientID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("senderID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("sent")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("messageID");
+
+                    b.HasIndex("recipientID");
+
+                    b.HasIndex("senderID");
+
+                    b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Organization", b =>
+                {
+                    b.Property<string>("organizationID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("orgName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("organizationID");
+
+                    b.ToTable("Organizations");
+                });
+
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Post", b =>
+                {
+                    b.Property<string>("postID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("authorID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("postID");
+
+                    b.HasIndex("authorID");
+
+                    b.ToTable("Posts");
+                });
+
             modelBuilder.Entity("WebApplicationSocialMedia.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -273,8 +477,8 @@ namespace WebApplicationSocialMedia.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<DateTime>("birth")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("birth")
+                        .HasColumnType("date");
 
                     b.Property<DateTime>("created")
                         .HasColumnType("datetime2");
@@ -315,213 +519,9 @@ namespace WebApplicationSocialMedia.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("WebSocialMedia.Models.Comment", b =>
-                {
-                    b.Property<string>("commentID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("postID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("userID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("commentID");
-
-                    b.HasIndex("postID");
-
-                    b.HasIndex("userID");
-
-                    b.ToTable("Comments");
-                });
-
-            modelBuilder.Entity("WebSocialMedia.Models.Community", b =>
-                {
-                    b.Property<string>("communityID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("userID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("communityID");
-
-                    b.HasIndex("userID");
-
-                    b.ToTable("Communities");
-                });
-
-            modelBuilder.Entity("WebSocialMedia.Models.CommunityPost", b =>
-                {
-                    b.Property<string>("communityPostID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("communityID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("communityPostID");
-
-                    b.HasIndex("communityID");
-
-                    b.ToTable("CommunityPosts");
-                });
-
-            modelBuilder.Entity("WebSocialMedia.Models.Friendship", b =>
-                {
-                    b.Property<string>("friendshipID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("friendID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("userID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("friendshipID");
-
-                    b.HasIndex("friendID");
-
-                    b.HasIndex("userID");
-
-                    b.ToTable("friendship");
-                });
-
-            modelBuilder.Entity("WebSocialMedia.Models.Interest", b =>
-                {
-                    b.Property<string>("interestID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("intName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("interestID");
-
-                    b.ToTable("Interests");
-                });
-
-            modelBuilder.Entity("WebSocialMedia.Models.Like", b =>
-                {
-                    b.Property<string>("likeID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("postID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("userID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("likeID");
-
-                    b.HasIndex("postID");
-
-                    b.HasIndex("userID");
-
-                    b.ToTable("Likes");
-                });
-
-            modelBuilder.Entity("WebSocialMedia.Models.Message", b =>
-                {
-                    b.Property<string>("messageID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("recipientID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("senderID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("sent")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("messageID");
-
-                    b.HasIndex("recipientID");
-
-                    b.HasIndex("senderID");
-
-                    b.ToTable("Messages");
-                });
-
-            modelBuilder.Entity("WebSocialMedia.Models.Organization", b =>
-                {
-                    b.Property<string>("organizationID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("orgName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("organizationID");
-
-                    b.ToTable("Organizations");
-                });
-
-            modelBuilder.Entity("WebSocialMedia.Models.Post", b =>
-                {
-                    b.Property<string>("postID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("authorID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("postID");
-
-                    b.HasIndex("authorID");
-
-                    b.ToTable("Posts");
-                });
-
             modelBuilder.Entity("CommunityUser", b =>
                 {
-                    b.HasOne("WebSocialMedia.Models.Community", null)
+                    b.HasOne("WebApplicationSocialMedia.Models.Community", null)
                         .WithMany()
                         .HasForeignKey("isOrganizatorcommunityID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -536,7 +536,7 @@ namespace WebApplicationSocialMedia.Migrations
 
             modelBuilder.Entity("InterestUser", b =>
                 {
-                    b.HasOne("WebSocialMedia.Models.Interest", null)
+                    b.HasOne("WebApplicationSocialMedia.Models.Interest", null)
                         .WithMany()
                         .HasForeignKey("interestsinterestID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -608,16 +608,16 @@ namespace WebApplicationSocialMedia.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebSocialMedia.Models.Organization", null)
+                    b.HasOne("WebApplicationSocialMedia.Models.Organization", null)
                         .WithMany()
                         .HasForeignKey("organizationsorganizationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WebSocialMedia.Models.Comment", b =>
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Comment", b =>
                 {
-                    b.HasOne("WebSocialMedia.Models.Post", "post")
+                    b.HasOne("WebApplicationSocialMedia.Models.Post", "post")
                         .WithMany("comments")
                         .HasForeignKey("postID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -634,7 +634,7 @@ namespace WebApplicationSocialMedia.Migrations
                     b.Navigation("post");
                 });
 
-            modelBuilder.Entity("WebSocialMedia.Models.Community", b =>
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Community", b =>
                 {
                     b.HasOne("WebApplicationSocialMedia.Models.User", "organizator")
                         .WithMany("communities")
@@ -645,9 +645,9 @@ namespace WebApplicationSocialMedia.Migrations
                     b.Navigation("organizator");
                 });
 
-            modelBuilder.Entity("WebSocialMedia.Models.CommunityPost", b =>
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.CommunityPost", b =>
                 {
-                    b.HasOne("WebSocialMedia.Models.Community", "community")
+                    b.HasOne("WebApplicationSocialMedia.Models.Community", "community")
                         .WithMany("communityPosts")
                         .HasForeignKey("communityID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -656,7 +656,7 @@ namespace WebApplicationSocialMedia.Migrations
                     b.Navigation("community");
                 });
 
-            modelBuilder.Entity("WebSocialMedia.Models.Friendship", b =>
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Friendship", b =>
                 {
                     b.HasOne("WebApplicationSocialMedia.Models.User", "friend")
                         .WithMany("imFriend")
@@ -675,9 +675,9 @@ namespace WebApplicationSocialMedia.Migrations
                     b.Navigation("user");
                 });
 
-            modelBuilder.Entity("WebSocialMedia.Models.Like", b =>
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Like", b =>
                 {
-                    b.HasOne("WebSocialMedia.Models.Post", "post")
+                    b.HasOne("WebApplicationSocialMedia.Models.Post", "post")
                         .WithMany("likes")
                         .HasForeignKey("postID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -694,7 +694,7 @@ namespace WebApplicationSocialMedia.Migrations
                     b.Navigation("post");
                 });
 
-            modelBuilder.Entity("WebSocialMedia.Models.Message", b =>
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Message", b =>
                 {
                     b.HasOne("WebApplicationSocialMedia.Models.User", "recipient")
                         .WithMany("messagesIRecieve")
@@ -713,7 +713,7 @@ namespace WebApplicationSocialMedia.Migrations
                     b.Navigation("sender");
                 });
 
-            modelBuilder.Entity("WebSocialMedia.Models.Post", b =>
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Post", b =>
                 {
                     b.HasOne("WebApplicationSocialMedia.Models.User", "author")
                         .WithMany("posts")
@@ -722,6 +722,18 @@ namespace WebApplicationSocialMedia.Migrations
                         .IsRequired();
 
                     b.Navigation("author");
+                });
+
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Community", b =>
+                {
+                    b.Navigation("communityPosts");
+                });
+
+            modelBuilder.Entity("WebApplicationSocialMedia.Models.Post", b =>
+                {
+                    b.Navigation("comments");
+
+                    b.Navigation("likes");
                 });
 
             modelBuilder.Entity("WebApplicationSocialMedia.Models.User", b =>
@@ -741,18 +753,6 @@ namespace WebApplicationSocialMedia.Migrations
                     b.Navigation("myFriends");
 
                     b.Navigation("posts");
-                });
-
-            modelBuilder.Entity("WebSocialMedia.Models.Community", b =>
-                {
-                    b.Navigation("communityPosts");
-                });
-
-            modelBuilder.Entity("WebSocialMedia.Models.Post", b =>
-                {
-                    b.Navigation("comments");
-
-                    b.Navigation("likes");
                 });
 #pragma warning restore 612, 618
         }

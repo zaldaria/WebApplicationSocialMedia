@@ -1,6 +1,6 @@
-﻿using WebApplicationSocialMedia.Models;
+using WebApplicationSocialMedia.Models;
 
-namespace WebSocialMedia.Models
+namespace WebApplicationSocialMedia.Models
 {
     public class Interest
     {

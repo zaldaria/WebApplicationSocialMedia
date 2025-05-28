@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using WebApplicationSocialMedia.DAL;
 using WebApplicationSocialMedia.Models;
 using WebApplicationSocialMedia.Services;
-using WebSocialMedia.Models;
 
 namespace WebApplicationSocialMedia.Pages
 {

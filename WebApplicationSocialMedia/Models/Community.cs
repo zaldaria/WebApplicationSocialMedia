@@ -1,11 +1,11 @@
-п»їusing WebApplicationSocialMedia.Models;
+using WebApplicationSocialMedia.Models;
 
-namespace WebSocialMedia.Models
+namespace WebApplicationSocialMedia.Models
 {
     public class Community
     {
         public string communityID { get; set; }
-        public string userID { get; set; }//РѕСЂРіР°РЅРёР·Р°С‚РѕСЂ
+        public string userID { get; set; }//организатор
         public User organizator { get; set; }
         public string name { get; set; }
         public string? description { get; set; }

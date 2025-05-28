@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
-using WebSocialMedia.Models;
 
 namespace WebApplicationSocialMedia.Models
 {
@@ -9,11 +8,11 @@ namespace WebApplicationSocialMedia.Models
         public string surname { get; set; } = "";
         public string name { get; set; } = "";
         public string? patronymic { get; set; } = "";
-        public DateTime birth { get; set; } = DateTime.MinValue;
+        public DateOnly birth { get; set; } = DateOnly.MaxValue;
         public string? residence { get; set; } = "";
         public string? phone { get; set; } = "";
         public string? status { get; set; } = "";
-        public DateTime created { get; set; }
+        public DateTime created { get; set; } = DateTime.Now;
         public string? image { get; set; }
 
         [NotMapped]

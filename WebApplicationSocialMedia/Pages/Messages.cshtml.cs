@@ -19,7 +19,7 @@ namespace WebApplicationSocialMedia.Pages
         private readonly UserManager<User> _userManager;
         private readonly ApplicationDbContext _context;
 
-        public User? CurrentUser { get; set; }
+        public User CurrentUser { get; set; }
         public List<User> Users { get; set; } = new List<User>();
         public List<Message> UserMessages { get; set; } = new List<Message>();
         public string SelectedUserId { get; set; } = string.Empty;
@@ -70,7 +70,7 @@ namespace WebApplicationSocialMedia.Pages
             Message message = new Message();
             message.messageID = Guid.NewGuid().ToString();
             
-            message.senderID = CurrentUser.Id;
+            message.senderID = CurrentUser?.Id;
             message.recipientID = recipientId;
             message.text = text;
             message.sent = DateTime.Now;
